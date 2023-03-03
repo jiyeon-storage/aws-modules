@@ -7,9 +7,6 @@ resource "random_string" "random" {
 module "alb" {
   source = "../"
 
-  # tag
-  env     = "test"
-
   # vpc
   vpc_id = aws_vpc.this.id
 
