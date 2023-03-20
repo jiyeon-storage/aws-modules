@@ -3,11 +3,6 @@ variable "env" {
   description = "Environment"
 }
 
-variable "team" {
-  type        = string
-  description = "The team tag used to managed resources"
-}
-
 variable "purpose" {
   type        = string
   description = "The team tag used to managed resources"
