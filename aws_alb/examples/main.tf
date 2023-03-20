@@ -7,18 +7,12 @@ resource "random_string" "random" {
 module "alb" {
   source = "../"
 
-  # tag
-  env     = "test"
-  prefix  = "ct"
-  team    = "ops"
-  purpose = "msigner"
-
   # vpc
   vpc_id = aws_vpc.this.id
 
   # access_log
   access_log = {
-    bucket  = "test-s3-mysql-update-user",
+    bucket  = "test-s3-name",
     preix   = "access_logs",
     enabled = true
   }

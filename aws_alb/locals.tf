@@ -3,7 +3,6 @@ locals {
     env        = var.env
     team       = var.team
     purpose    = var.purpose
-    managed_by = "terraform"
   }
 
   lb_name = var.fixed_name != "" ? var.fixed_name : format("%s%s-%s-alb", var.prefix, var.env, var.purpose)
