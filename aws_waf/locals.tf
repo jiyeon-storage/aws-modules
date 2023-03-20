@@ -3,5 +3,6 @@ locals {
     env        = var.env
     team       = var.team
     purpose    = var.purpose
+    managed_by = "terraform"
   }
 }
