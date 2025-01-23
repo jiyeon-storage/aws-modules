@@ -1,3 +1,18 @@
+variable "env" {
+  type        = string
+  description = "Environment like prod, stg, dev, alpha"
+}
+
+variable "team" {
+  type        = string
+  description = "The team tag used to managed resources."
+}
+
+variable "purpose" {
+  type        = string
+  description = "The team tag used to managed resources"
+}
+
 variable "create" {
   description = "Controls if resources should be created (affects nearly all resources)"
   type        = bool
