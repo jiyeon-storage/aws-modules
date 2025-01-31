@@ -1,13 +1,14 @@
 locals {
   name   = "ex-${basename(path.cwd)}"
-  region = "eu-west-1"
+  region = "ap-northeast-2"
 
   vpc_cidr = "10.0.0.0/16"
-  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
+  azs      = ["ap-northeast-2a", "ap-northeast-2c"]
 
   tags = {
-    Example    = local.name
-    GithubRepo = "terraform-aws-eks"
-    GithubOrg  = "terraform-aws-modules"
+    env        = "DEV"
+    team       = "DevOps"
+    purpose    = "test"
+    managed_by = "terraform"
   }
 }

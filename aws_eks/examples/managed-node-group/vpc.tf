@@ -1,25 +1,28 @@
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
+  source  = "../../../aws_vpc"
+  prefix  = format("test-%s", random_string.random.result)
+  env     = "test"
+  team    = "test"
+  purpose = "ops"
 
-  name = local.name
-  cidr = local.vpc_cidr
+  cidr_block          = local.vpc_cidr
+  azs                 = ["ap-northeast-2a", "ap-northeast-2c"]
+  single_nat_gateway  = true
+  enable_nat_private  = true
 
-  azs             = local.azs
-  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
-  public_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 48)]
-  intra_subnets   = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 52)]
-
-  enable_nat_gateway = true
-  single_nat_gateway = true
-
-  public_subnet_tags = {
-    "kubernetes.io/role/elb" = 1
+  subnet_cidrs = {
+    public   = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
+    private  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 48)]
+    intra    = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 52)]
   }
 
-  private_subnet_tags = {
-    "kubernetes.io/role/internal-elb" = 1
+  subnet_tags = {
+    public = {
+      "kubernetes.io/role/elb" = "1"
+    }
+    private = {
+      "kubernetes.io/role/internal-elb" = "1"
+      "karpenter.sh/discovery" = local.name
+    }
   }
-
-  tags = local.tags
 }
