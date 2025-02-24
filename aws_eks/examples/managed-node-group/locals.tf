@@ -1,5 +1,4 @@
 locals {
-  name   = "ex-eks-mng"
   region = "ap-northeast-2"
 
   vpc_cidr = "10.0.0.0/16"

@@ -5,7 +5,7 @@ module "eks_bottlerocket" {
   team        = local.tags.team
   purpose     = local.tags.purpose
 
-  cluster_name    = "${local.name}-bottlerocket"
+  cluster_name    = format("%s-%s-%s-eks-00", local.tags.env, local.tags.account, local.tags.purpose)
   cluster_version = "1.31"
 
   # EKS Addons

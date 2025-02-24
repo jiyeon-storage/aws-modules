@@ -5,8 +5,8 @@ module "eks_al2023" {
   team        = local.tags.team
   purpose     = local.tags.purpose
 
-  cluster_name    = "${local.name}-al2023"
-  cluster_version = "1.31"
+  cluster_name    = format("%s-%s-%s-eks-00", local.tags.env, local.tags.account, local.tags.purpose)
+  cluster_version = "1.32"
 
   # EKS Addons
   cluster_addons = {

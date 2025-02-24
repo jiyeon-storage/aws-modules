@@ -6,7 +6,7 @@ module "vpc" {
   purpose = "ops"
 
   cidr_block          = local.vpc_cidr
-  azs                 = ["ap-northeast-2a", "ap-northeast-2c"]
+  azs                 = local.azs
   single_nat_gateway  = true
   enable_nat_private  = true
 
@@ -22,7 +22,7 @@ module "vpc" {
     }
     private = {
       "kubernetes.io/role/internal-elb" = "1"
-      "karpenter.sh/discovery" = local.name
+      "karpenter.sh/discovery" = format("%s-%s-%s-eks-00", local.tags.env, local.tags.account, local.tags.purpose)
     }
   }
 }
