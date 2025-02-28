@@ -42,12 +42,12 @@ module "complete" {
 
   # Traffic source attachment
   traffic_source_attachments = {
-    nlb_internal = {
-      traffic_source_identifier = local.nlb_internal_tg_arn
+    alb_internal = {
+      traffic_source_identifier = local.alb_internal_tg_arn
       traffic_source_type       = "elbv2" # default
     },
-    nlb_public = {
-      traffic_source_identifier = local.nlb_pubilc_tg_arn
+    alb_public = {
+      traffic_source_identifier = local.alb_pubilc_tg_arn
       traffic_source_type       = "elbv2" # default
     }
 
