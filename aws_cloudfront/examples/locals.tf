@@ -1,5 +1,5 @@
 locals {
-  env        = "d"
+  env        = "dev"
   team       = "devops"
   purpose    = "test"
   prefix     = "jiyeon"
