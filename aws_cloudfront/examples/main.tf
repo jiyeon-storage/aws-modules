@@ -84,7 +84,7 @@ module "cloudfront" {
         origin_shield_region = "us-east-1"
       }
     }
-    # 예전 방식식
+    # 예전 방식
     # s3_one = {
     #   domain_name = module.s3_one.s3_bucket_bucket_regional_domain_name
     #   s3_origin_config = {
@@ -92,7 +92,7 @@ module "cloudfront" {
     #   }
     # }
 
-    # 권장되는 방식식
+    # 권장되는 방식
     s3_oac = { 
       domain_name           = module.s3_one.s3_bucket_bucket_regional_domain_name
       origin_access_control = "s3_oac"
