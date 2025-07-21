@@ -20,5 +20,17 @@ locals {
   ]))
 
   asg_attachments = { for k, v in var.target_groups : k => v if v["attachment_type"] == "asg" }
+
+  listener_rules = flatten([
+    for listener_key, listener_values in var.listeners : [
+      for listener_name, listener in listener_values : [
+        for rule_key, rule_values in lookup(listener, "rules", {}) :
+        merge(rule_values, {
+          listener_key = listener_name
+          rule_key     = rule_key
+        })
+      ]
+    ]
+  ])
 }
 
