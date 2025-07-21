@@ -24,6 +24,12 @@ variable "purpose" {
   description = "The team tag used to managed resources"
 }
 
+variable "name" {
+  description = "The resource name and Name tag of the load balancer."
+  type        = string
+  default     = null
+}
+
 variable "load_balancer_type" {
   type        = string
   default     = "application"
